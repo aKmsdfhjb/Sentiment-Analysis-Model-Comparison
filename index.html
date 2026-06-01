@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Model Benchmarker</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <py-config>
+        packages = ["scikit-learn", "numpy"]
+        [[fetch]]
+        from = "models/"
+        files = ["logistic_regression.pkl", "multinomial_nb.pkl", "label_encoder.pkl"]
+    </py-config>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight text-indigo-400">📊 Client-Side Sentiment Analytics Engine</h1>
+            <span class="text-xs font-mono bg-slate-800 px-3 py-1 rounded-full border border-slate-700 text-slate-400">GitHub Pages Client-Side WebAssembly Deployment</span>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 w-full flex-grow grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <div class="lg:col-span-1 bg-slate-800/40 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+                <h2 class="text-lg font-semibold mb-2">Inference Input</h2>
+                <p class="text-sm text-slate-400 mb-4">Input sample sentences or raw evaluation strings to gauge benchmark metrics simultaneously via client-side WebAssembly.</p>
+                <textarea id="textInput" class="w-full h-48 bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-slate-200 focus:outline-none focus:border-indigo-500 transition-colors resize-none" placeholder="Type customer feedback or reviews here...">This product exceeded all my expectations! The interface is highly responsive and clean.</textarea>
+            </div>
+            <button py-click="run_benchmark" class="w-full mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm py-3 px-4 rounded-xl shadow-lg shadow-indigo-600/20 transition-all active:scale-[0.98]">
+                Execute In-Browser Comparison
+            </button>
+        </div>
+
+        <div class="lg:col-span-2 flex flex-col gap-4">
+            <h2 class="text-lg font-semibold px-1">Algorithmic Performance Comparison</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase">Statistical Model</span>
+                        <h3 class="text-base font-bold mt-1 text-slate-200">Logistic Regression</h3>
+                    </div>
+                    <div class="my-6">
+                        <div class="text-xs text-slate-400">Predicted Output</div>
+                        <div id="lr-class" class="text-2xl font-black mt-1 text-slate-400">--</div>
+                    </div>
+                    <div class="border-t border-slate-800/80 pt-3 flex justify-between items-center text-xs font-mono text-slate-500">
+                        <span>Latency:</span>
+                        <span id="lr-latency" class="text-slate-300">0.00 ms</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-emerald-400 tracking-wider uppercase">Probabilistic Classifier</span>
+                        <h3 class="text-base font-bold mt-1 text-slate-200">Multinomial NB</h3>
+                    </div>
+                    <div class="my-6">
+                        <div class="text-xs text-slate-400">Predicted Output</div>
+                        <div id="nb-class" class="text-2xl font-black mt-1 text-slate-400">--</div>
+                    </div>
+                    <div class="border-t border-slate-800/80 pt-3 flex justify-between items-center text-xs font-mono text-slate-500">
+                        <span>Latency:</span>
+                        <span id="nb-latency" class="text-slate-300">0.00 ms</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between ring-1 ring-indigo-500/30">
+                    <div>
+                        <span class="text-xs font-semibold text-indigo-400 tracking-wider uppercase">Deep Learning</span>
+                        <h3 class="text-base font-bold mt-1 text-slate-200">Keras GRU Model</h3>
+                    </div>
+                    <div class="my-6">
+                        <p class="text-xs text-slate-400 leading-normal">TensorFlow compiled files require a dedicated server container environment.</p>
+                    </div>
+                    <div class="border-t border-slate-800/80 pt-3 flex justify-between items-center text-xs font-mono text-slate-500">
+                        <span>Status:</span>
+                        <span class="text-amber-400">Server Only</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-950/40 border border-indigo-950/60 p-4 rounded-xl flex gap-3 text-xs text-slate-400 leading-relaxed mt-auto">
+                <span class="text-indigo-400 text-sm">💡</span>
+                <p><strong>Freelance Note for Evaluators:</strong> This entire interface runs directly over GitHub Pages using WebAssembly compiling tools. No background application databases or traditional cloud API server resources are required to sample client-side predictions.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950/20 py-4 text-center text-xs text-slate-500">
+        Engine Built & Maintained by <span class="text-slate-400 font-medium">aKmsdfhjb</span> &bull; Upwork Portfolio Project
+    </footer>
+
+    <py-script>
+        import pickle
+        import time
+        from js import document
+
+        # Load models directly into the browser memory
+        with open("logistic_regression.pkl", "rb") as f:
+            log_reg = pickle.load(f)
+        with open("multinomial_nb.pkl", "rb") as f:
+            naive_bayes = pickle.load(f)
+        with open("label_encoder.pkl", "rb") as f:
+            label_encoder = pickle.load(f)
+
+        def run_benchmark(event):
+            # Read from HTML UI
+            user_input = document.getElementById("textInput").value
+            
+            # Set loading states
+            document.getElementById("lr-class").innerText = "..."
+            document.getElementById("nb-class").innerText = "..."
+            
+            # 1. Logistic Regression Inference
+            start_lr = time.time()
+            # Replace with vectorizer transform if saved separately
+            pred_lr = log_reg.predict([user_input])[0]
+            label_lr = label_encoder.inverse_transform([pred_lr])[0]
+            latency_lr = (time.time() - start_lr) * 1000
+            
+            # 2. Naive Bayes Inference
+            start_nb = time.time()
+            pred_nb = naive_bayes.predict([user_input])[0]
+            label_nb = label_encoder.inverse_transform([pred_nb])[0]
+            latency_nb = (time.time() - start_nb) * 1000
+
+            # Write results back to the HTML UI DOM
+            document.getElementById("lr-class").innerText = str(label_lr)
+            document.getElementById("lr-latency").innerText = f"{latency_lr:.2f} ms"
+            
+            document.getElementById("nb-class").innerText = str(label_nb)
+            document.getElementById("nb-latency").innerText = f"{latency_nb:.2f} ms"
+    </py-script>
+</body>
+</html>
