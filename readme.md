@@ -65,3 +65,11 @@ Reported training metrics are not repeated here because the dataset and complete
 ## License and data
 
 Confirm the dataset license and source before restoring or redistributing review text. Avoid committing personal or private customer information.
+
+
+## Project Wiki
+
+- [Wiki home](docs/wiki/Home.md)
+- [Architecture and deployment](docs/wiki/Architecture.md)
+
+The repository keeps a version-controlled wiki source under `docs/wiki/`.
