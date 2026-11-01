@@ -9,7 +9,7 @@ Inspect `notebooks/Code.ipynb` and the model inventory in the README. Restore a 
 ## Key repository references
 
 - [Source repository](https://github.com/aKmsdfhjb/Sentiment-Analysis-Model-Comparison)
-- [README](../../README.md)
+- [README](https://github.com/aKmsdfhjb/Sentiment-Analysis-Model-Comparison#readme)
 - [Architecture](Architecture.md)
 
 ## Scope and limitations
